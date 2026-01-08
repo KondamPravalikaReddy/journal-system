@@ -1,120 +1,170 @@
-📖 Journal Management System
+# 📖 Journal Management System
 
-A RESTful backend application for managing journals, users, and authentication.
-Built for learning, college projects, and backend portfolios.
+A **production-ready REST API** for managing academic journals, built with **Node.js, Express, Sequelize, and SQLite**.  
+Includes authentication, role-based access, file uploads, and peer-review workflow.
 
-🚀 Tech Stack
+---
 
-Node.js
+##  Features
 
-Express.js
+-  JWT Authentication (Register / Login)
+-  Role-Based Access (Author, Reviewer, Editor, Admin)
+-  Manuscript Submission & Status Tracking
+-  File Upload with Version Control & Checksums
+-  Peer Review Assignment & Submission
+-  SQLite Database (Zero Configuration)
+-  Secure Password Hashing (bcrypt)
 
-Sequelize ORM
+---
 
-SQLite (no DB installation required)
+##  Tech Stack
 
-JWT Authentication
+| Layer          | Technology |
+|---------------|-----------|
+| Runtime       | Node.js 18+ |
+| Framework     | Express.js |
+| ORM           | Sequelize |
+| Database      | SQLite |
+| Auth          | JWT |
+| File Upload   | Multer |
+| Security      | Helmet, CORS |
 
-bcrypt (password hashing)
+---
 
-📁 Project Structure
+## 📂 Project Structure
+```
 journal-system/
+│
 ├── server.js
-├── config/
-│   └── database.js
-├── routes/
-│   └── auth.js
-├── models/
-├── middleware/
-├── database.sqlite
 ├── package.json
+├── .env
+├── database.sqlite
+│
+├── config/
+│ └── database.js
+│
+├── models/
+│ ├── User.js
+│ ├── Submission.js
+│ ├── SubmissionFile.js
+│ ├── Review.js
+│ └── index.js
+│
+├── routes/
+│ ├── auth.js
+│ ├── submissions.js
+│ └── reviews.js
+│
+├── middleware/
+│ └── auth.js
+│
+├── uploads/
+│ ├── temp/
+│ └── files/
+│
 └── README.md
+```
+yaml
+Copy code
 
-⚙️ Installation & Setup
-1️⃣ Clone the repository
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone Repository
+```bash
 git clone https://github.com/your-username/journal-system.git
 cd journal-system
-
-2️⃣ Install dependencies
+2️⃣ Install Dependencies
+bash
+Copy code
 npm install
+3️⃣ Configure Environment
+Create a .env file:
 
-3️⃣ Start the server
-nodemon server.js
+env
+Copy code
+PORT=3000
+JWT_SECRET=your-secret-key
+JWT_EXPIRY=7d
+NODE_ENV=development
+4️⃣ Start Server
+bash
+Copy code
+npm run dev
+Server runs at:
 
-
-Server will run at:
-
+arduino
+Copy code
 http://localhost:3000
-
-✅ Health Check
+🧪 API Health Check
+bash
+Copy code
 curl http://localhost:3000/api/health
-
-
 Response:
 
+json
+Copy code
 {
-  "status": "OK",
-  "message": "Server is running"
+  "status": "ok",
+  "database": "SQLite",
+  "environment": "development"
 }
-
-🔐 Authentication APIs
-Register User
-
+🔑 Authentication Endpoints
+Register
+arduino
+Copy code
 POST /api/auth/register
-
-{
-  "email": "test@example.com",
-  "password": "123456"
-}
-
-Login User
-
+Login
+bash
+Copy code
 POST /api/auth/login
+📄 Submissions API
+POST /api/submissions – Create submission
 
-🗄️ Database
+GET /api/submissions/:id – View submission
 
-Uses SQLite
+POST /api/submissions/:id/files – Upload manuscript
 
-Database file: database.sqlite
+GET /api/submissions/:id/files – List files
 
-Auto-created on server start
+🧑‍⚖️ Reviews API
+POST /api/reviews – Assign reviewer (Editor)
 
-No MySQL / PostgreSQL installation needed
+POST /api/reviews/:id/submit – Submit review
 
-🎯 Features
+GET /api/reviews/:id – View review
 
-User registration & login
+💾 Database
+SQLite database auto-created as:
 
-JWT-based authentication
+pgsql
+Copy code
+database.sqlite
+Tables:
 
-Secure password hashing
+users
 
-Modular route structure
+submissions
 
-Easy switch to MySQL/PostgreSQL later
+submission_files
 
-🧪 Tools for Testing
+reviews
 
-curl
 
-Postman
+Build Command:
 
-Thunder Client (VS Code)
+bash
+Copy code
+npm install
+Start Command:
 
-📌 Future Enhancements
+bash
+Copy code
+npm start
+```
+# Screenshots:
 
-Role-based access (Admin, Editor, Reviewer)
+<img width="1284" height="832" alt="Screenshot 2026-01-08 210723" src="https://github.com/user-attachments/assets/ba0ba9ff-e748-45f8-9b9d-5908d3abcf7b" />
 
-Journal submissions
-
-File uploads
-
-Peer review workflow
-
-📄 License
-
-MIT License
-
-👨‍🎓 Author
-
-Kondam Pravalika Reddy
+<img width="1092" height="758" alt="Screenshot 2026-01-08 211039" src="https://github.com/user-attachments/assets/729baa4b-838f-444f-8985-abbd0233ebb5" />
